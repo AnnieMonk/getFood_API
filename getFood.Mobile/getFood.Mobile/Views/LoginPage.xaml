@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:getFood.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="getFood.Mobile.Views.LoginPage"
+             BackgroundImageSource="login.jpg">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel></viewModels:LoginViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame Margin="25,100,25,100" BackgroundColor="White" Opacity="0.9" VerticalOptions="CenterAndExpand">
+            
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                <Label Text="Prijavi se" FontSize="30" FontAttributes="Italic" HorizontalTextAlignment="Center"/>
+                <Label  Text="Korisničko ime: "></Label>
+                <Entry x:Name="KorisnickoIme" Text="{Binding Username}"></Entry>
+
+                <Label  Text="Lozinka: "></Label>
+                <Entry Text="{Binding Password}" IsPassword="True"></Entry>
+                <StackLayout Orientation="Horizontal">
+                    <Button Command="{Binding LoginCommand}"  HorizontalOptions="FillAndExpand" Text="Login" BackgroundColor="#028090" TextColor="Black" FontAttributes="Bold" CornerRadius="2"></Button>
+                    <Button x:Name="RegistracijaButton" HorizontalOptions="FillAndExpand" Text="Registracija" BackgroundColor="#FFC200" TextColor="Black" FontAttributes="Bold" CornerRadius="2"  Clicked="RegistracijaButton_Clicked"></Button>
+
+                </StackLayout>
+                <Label IsVisible="{Binding IsBusy}" Text="..."></Label>
+            </StackLayout>
+        </Frame>
+       
+    </ContentPage.Content>
+</ContentPage>

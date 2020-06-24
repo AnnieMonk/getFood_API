@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:getFood.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="getFood.Mobile.Views.ProfilPage"
+             BackgroundImageSource="userBackground.jpg"
+             Title="{Binding FullName}"
+            >
+    <ContentPage.BindingContext>
+        <viewModels:ProfilViewModel></viewModels:ProfilViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+
+        <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
+            <StackLayout Orientation="Vertical" Spacing="6" VerticalOptions="FillAndExpand">
+
+                <Frame Margin="50,25,50,25" BackgroundColor="LightGray" Opacity="0.8">
+
+                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
+                            <StackLayout Orientation="Horizontal" >
+                                <Button Text="Favoriti" Padding="2" BackgroundColor="#FFC200" TextColor="Black" FontAttributes="Bold" CornerRadius="2" ImageSource="favoriti25.png" Clicked="favoriti_Clicked" HorizontalOptions="FillAndExpand"></Button>
+                                <Button Text="Kuponi" Padding="2" BackgroundColor="#FFC200" TextColor="Black" FontAttributes="Bold" CornerRadius="2" ImageSource="coupon25.png" Clicked="kuponi_Clicked" HorizontalOptions="FillAndExpand"></Button>
+
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Button Text="Rezervacije" Padding="2" BackgroundColor="#028090" TextColor="Black" FontAttributes="Bold" CornerRadius="2" ImageSource="rezervacije25.png" Clicked="rezervacije_Clicked" HorizontalOptions="FillAndExpand"></Button>
+
+                                <Button Text="Narudžbe" Padding="2" BackgroundColor="#028090" TextColor="Black" FontAttributes="Bold" CornerRadius="2" ImageSource="narudzbe25.png" Clicked="narudzbe_Clicked" HorizontalOptions="FillAndExpand"></Button>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+                            <BoxView 
+                        HeightRequest="1"
+                        BackgroundColor="White" 
+                        HorizontalOptions="FillAndExpand"/>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="FillAndExpand" Opacity="1">
+                            <Label Text="Korisničko ime: " TextColor="Black"
+                       d:Text="{Binding .}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                            <StackLayout Orientation="Horizontal" >
+                                <Entry  IsReadOnly="True" Placeholder="{Binding Username}" HorizontalOptions="FillAndExpand" Opacity="1" BackgroundColor="LightGray"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Entry>
+                                <Label Text=" "></Label>
+                            </StackLayout>
+                            <Label Text="Password:  "
+                       d:Text="{Binding .}" TextColor="Black"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                            <StackLayout Orientation="Horizontal" >
+                                <Entry x:Name="passwordEntry" BackgroundColor="LightGray" IsPassword="True" IsReadOnly="True" Placeholder="************" HorizontalOptions="FillAndExpand" Opacity="1"
+                       Style="{DynamicResource ListItemDetailTextStyle}" ></Entry>
+                               
+                                <Button x:Name="promijeniPassword" ImageSource="promijeni.png" Clicked="promijeniPassword_Clicked" BackgroundColor="Transparent" Command="{Binding promijeniPasswordCommand}"></Button>
+                            </StackLayout>
+                            <Label x:Name="ErrorLabelPassword" FontSize="10" TextColor="#ff8c00"></Label>
+                            
+                            
+                            <StackLayout x:Name="PasswordConfirmation" IsVisible="False">
+                                <Label Text="Potvrdi password:  "
+                                       d:Text="{Binding .}" TextColor="Black"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}">
+                                    
+                                </Label>
+                                <Entry x:Name="passwordConfirmationEntry" BackgroundColor="LightGray" IsPassword="True" Placeholder="************" HorizontalOptions="FillAndExpand" Opacity="1"
+                       Style="{DynamicResource ListItemDetailTextStyle}" ></Entry>
+                                <Label x:Name="ErrorLabelConfirmation" FontSize="10" TextColor="#ff8c00"></Label>
+                            </StackLayout>
+
+
+                            <Label Text="Email:  "
+                                   d:Text="{Binding .}" TextColor="Black"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListItemDetailTextStyle}">
+                                
+                            </Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="promijeniEmailEntry" BackgroundColor="LightGray" IsReadOnly="True" Placeholder="{Binding Email}" HorizontalOptions="FillAndExpand" Opacity="1"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Entry>
+                               
+                                <Button x:Name="promijeniEmail" ImageSource="promijeni.png" Clicked="promijeniEmail_Clicked" BackgroundColor="Transparent"></Button>
+                            </StackLayout>
+                            <Label x:Name="ErrorLabelEmail" FontSize="10" TextColor="#ff8c00"></Label>
+
+
+                            <Label Text="Adresa:  " 
+                                   TextColor="Black"
+                                   d:Text="{Binding .}"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListItemDetailTextStyle}">
+                                
+                            </Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="promijeniAdresuEntry" BackgroundColor="LightGray" IsReadOnly="True" Placeholder="{Binding Adresa}" HorizontalOptions="FillAndExpand" Opacity="1"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Entry>
+                             
+                                <Button x:Name="promijeniAdresu" ImageSource="promijeni.png" Clicked="promijeniAdresu_Clicked" BackgroundColor="Transparent"></Button>
+                            </StackLayout>
+                            <Label x:Name="ErrorLabelAdresa" FontSize="10" TextColor="#ff8c00"></Label>
+
+
+                            <Label Text="Telefon:  " TextColor="Black"
+                                   d:Text="{Binding .}"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListItemDetailTextStyle}">
+                                
+                            </Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="promijeniTelefonEntry" BackgroundColor="LightGray"  IsReadOnly="True" Placeholder="{Binding Telefon}" HorizontalOptions="FillAndExpand" Opacity="1"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Entry>
+                             
+                                <Button x:Name="promijeniTelefon" ImageSource="promijeni.png" Clicked="promijeniTelefon_Clicked" BackgroundColor="Transparent"></Button>
+                            </StackLayout>
+                            <Label x:Name="ErrorLabelTelefon" FontSize="10" TextColor="#ff8c00"></Label>
+
+
+                        </StackLayout>
+
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Label Text="Vaše kartice: " TextColor="Black" VerticalOptions="CenterAndExpand"
+                       d:Text="{Binding .}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                                <Button x:Name="dodajNovuKarticu" ImageSource="plusWhite.png" Clicked="dodajNovuKarticu_Clicked" Opacity="1" BackgroundColor="Transparent"></Button>
+                            </StackLayout>
+
+                            <ListView x:Name="listaKartica" ItemsSource="{Binding karticaList}"
+                          VerticalScrollBarVisibility="Never"
+                          HeightRequest="100"
+                          ItemTapped="ukloniIzListe_ItemTapped"
+                          >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="kreditna.png"></Image>
+                                                <Label Text="{Binding BrojKartice}"
+                                           d:Text="{Binding .}" TextColor="Black"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}" Opacity="1"></Label>
+                                                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" Padding="0" Margin="0">
+                                                    <Image Source="iks.png">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding UkloniCommand}" Tapped="ukloni_Tapped">
+                                                            </TapGestureRecognizer>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+
+
+
+                    </StackLayout>
+
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

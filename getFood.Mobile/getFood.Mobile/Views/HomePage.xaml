@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:getFood.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="getFood.Mobile.Views.HomePage" BackgroundImageSource="miguel-maldonado-qom5MPOER-I-unsplash.jpg"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewModels:HomePageViewModel></viewModels:HomePageViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+          
+            <StackLayout Margin="50,1,50,1" >
+                <Frame Padding="15,5,15,0"  BackgroundColor="#cdcdcd" Margin="0,0,0,5" HeightRequest="50" Opacity="0.7">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                            <Label Text="Vaša lokacija: "
+                       d:Text="{Binding .}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="10"></Label>
+                            <Label x:Name="Adresa"
+                         d:Text="{Binding .}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="10"></Label>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand">
+                            <Image Source="lokacija.png" HeightRequest="30"></Image>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Orientation="Horizontal" Margin="0,0,0,0">
+                    <Label Text="Filtriraj " Style="{DynamicResource ListItemTextStyle}" TextColor="White" FontAttributes="Bold"></Label>
+                    <Image x:Name="imageFilter" Source="filter.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                </StackLayout>
+                <Frame x:Name="Filter" BackgroundColor="White" IsVisible="False">
+                    <StackLayout Orientation="Vertical">
+                      
+                        <Picker x:Name="kuhinjaList" Title="Kuhinja: " ItemsSource="{Binding KuhinjaList}" TitleColor="Gray" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedKuhinja}"></Picker>
+
+                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                       
+                            <Label Text="Minimalna narudžba (do):  " TextColor="Gray" Padding="2"></Label>
+                            <Label x:Name="minimalnaNarudzba" Text="{Binding MinimalnaNarudzba}" TextColor="Gray" HorizontalTextAlignment="Center"/>
+                            <Slider Maximum="20" Minimum="0" MaximumTrackColor="#028090" ValueChanged="Slider_ValueChanged"/>
+
+
+
+                        </StackLayout>
+                    </StackLayout>
+
+                </Frame>
+                <StackLayout Margin="0,2,0,2">
+                <BoxView 
+                        HeightRequest="1"
+                        BackgroundColor="White" 
+                        HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <ScrollView Orientation="Vertical" >
+                    
+                    <ListView x:Name="ListaRestorana" ItemsSource="{Binding RestoranList}"
+                HorizontalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement" ItemSelected="naruci_OnSelected"
+                VerticalScrollBarVisibility="Always"
+                VerticalOptions="FillAndExpand" HeightRequest="300">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Margin="0,0,0,5" HeightRequest="60" BackgroundColor="Beige" Padding="15" BorderColor="#028090" >
+                                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                                            <StackLayout Orientation="Vertical">
+                                                <Label Text="{Binding Naziv}"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16"></Label>
+                                                <Label Text="{Binding Adresa}"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"></Label>
+                                                <StackLayout Orientation="Horizontal" >
+                                                    <Label Text="{Binding Rating}"
+                                                        d:Text="{Binding .}"
+                                                        LineBreakMode="NoWrap" 
+                                                        Style="{DynamicResource ListItemDetailTextStyle}" 
+                                                        FontSize="12"
+                                                        
+                                                        TextColor="Gray"></Label>
+                                                    <Image Source="rating.png" ></Image>
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                                                <Label Text="MINIMALNA NARUDŽBA"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="13"
+                                    TextColor="Gray"
+                                    ></Label>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding MinimalnaNarudzba}" 
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                    ></Label>
+                                                    <Label Text="KM" 
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                    ></Label>
+                                                </StackLayout>
+                                                   
+                                               
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HeightRequest="20">
+                                                    <Label Text="{Binding KuhinjaNaziv}"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                                       VerticalOptions="EndAndExpand"></Label>
+
+                                                    <Label Text="kuhinja"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                                       VerticalOptions="EndAndExpand"></Label>
+
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </StackLayout>
+            
+               
+            
+            <StackLayout Margin="50,0,50,0">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="U vašoj blizini" Style="{DynamicResource ListItemTextStyle}" TextColor="White" FontAttributes="Bold"></Label>
+                    <StackLayout Margin="0,2,0,2">
+                        <BoxView 
+                        HeightRequest="1"
+                        BackgroundColor="White" 
+                        HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+                <ScrollView Orientation="Vertical" HeightRequest="400">
+                <ListView x:Name="NajbliziRestoraniList" ItemsSource="{Binding NajbliziRestoraniList}"
+                HorizontalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement" ItemSelected="naruci_OnSelected"
+                VerticalScrollBarVisibility="Always" HeightRequest="300">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                    <Frame Margin="0,0,0,5" HeightRequest="60" BackgroundColor="#F4F4E8" Padding="15" >
+                                    <StackLayout Orientation="Horizontal" >
+                                            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" >
+                                            <Label Text="{Binding Naziv}"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16"></Label>
+                                            <Label Text="{Binding Adresa}"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"></Label>
+                                            <StackLayout Orientation="Horizontal" >
+                                                <Label Text="{Binding Rating}"
+                                                        d:Text="{Binding .}"
+                                                        LineBreakMode="NoWrap" 
+                                                        Style="{DynamicResource ListItemDetailTextStyle}" 
+                                                        FontSize="12"
+                                                        
+                                                        TextColor="Gray"></Label>
+                                                <Image Source="rating.png" ></Image>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <Label Text="MINIMALNA NARUDŽBA"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                    ></Label>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding MinimalnaNarudzba}" 
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                    ></Label>
+                                                <Label Text="KM" 
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                    ></Label>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HeightRequest="20">
+                                                <Label Text="{Binding KuhinjaNaziv}"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                                       VerticalOptions="EndAndExpand"></Label>
+
+                                                <Label Text="kuhinja"
+                                    d:Text="{Binding .}"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="12"
+                                    TextColor="Gray"
+                                                       VerticalOptions="EndAndExpand"></Label>
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                          
+                                        </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            </StackLayout>
+                
+        </StackLayout>
+        </ScrollView>
+
+
+    </ContentPage.Content>
+</ContentPage>

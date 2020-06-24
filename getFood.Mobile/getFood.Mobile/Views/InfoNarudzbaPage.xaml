@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:getFood.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="getFood.Mobile.Views.InfoNarudzbaPage"
+             BackgroundImageSource="pozadina2.jpg"
+             Title="Plaćanje">
+    <ContentPage.BindingContext>
+        <viewModels:NarudzbaViewModel></viewModels:NarudzbaViewModel>
+    </ContentPage.BindingContext>
+  
+    <Frame Margin="50,1,50,1" BackgroundColor="White" Opacity="0.9">
+        <ScrollView VerticalOptions="FillAndExpand" >
+
+            <StackLayout Orientation="Vertical" Margin="25,1,25,1">
+                    <StackLayout>
+                        <Label Text="Adresa" Style="{DynamicResource ListItemTextStyle}"></Label>
+                    <Entry x:Name="adresaDostave" VerticalOptions="CenterAndExpand" FontSize="12" Opacity="0.7" BackgroundColor="White"></Entry>
+                    <Label x:Name="ErrorLabelAdresa" FontSize="10" TextColor="#ff8c00"></Label>
+                </StackLayout>
+                    <StackLayout>
+                        <Label Text="Ime i prezime " Style="{DynamicResource ListItemTextStyle}"></Label>
+                        <Entry x:Name="korisnikLabel" FontSize="12" Opacity="0.7" ></Entry>
+                    <Label x:Name="ErrorLabelKorisnik" FontSize="10" TextColor="#ff8c00"></Label>
+                </StackLayout>
+                    <StackLayout>
+                        <Label Text="Broj telefona " Style="{DynamicResource ListItemTextStyle}"></Label>
+                        <Entry x:Name="telefonEntry" FontSize="12" Opacity="0.7" ></Entry>
+                    <Label x:Name="ErrorLabelTelefon" FontSize="10" TextColor="#ff8c00"></Label>
+                </StackLayout>
+                    <StackLayout>
+                        <Label Text="Odaberite način plaćanja:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                            <Label Text="Kartica" VerticalOptions="CenterAndExpand"></Label>
+                            <Switch x:Name="karticaSwitch" Toggled="karticaSwitch_Toggled"></Switch>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                            <Label Text="Po uzeću" VerticalOptions="CenterAndExpand"></Label>
+                            <Switch x:Name="poUzecuSwitch" Toggled="poUzecuSwitch_Toggled"></Switch>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" IsVisible="False">
+                            <Label Text="Broj kartice:"></Label>
+                            <Button Text="Potvrdi"></Button>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Label Text="Dodaj napomenu (opcionalno): " Style="{DynamicResource ListItemTextStyle}"></Label>
+                        <Editor x:Name="Napomena" HeightRequest="100" Opacity="0.7" ></Editor>
+                        <Picker x:Name="kuponiList" IsVisible="False" Title="Odaberite kupon: " ItemsSource="{Binding kuponiList}" TitleColor="Gray" ItemDisplayBinding="{Binding Popust}" SelectedItem="{Binding SelectedKupon}"></Picker>
+
+                    </StackLayout>
+                    <StackLayout  x:Name="unesiKarticu" IsVisible="False">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Izaberite postojeću karticu?" />
+                            <ListView ItemsSource="{Binding karticaList}" VerticalOptions="FillAndExpand" HeightRequest="100" ItemTapped="karticaList_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Vertical">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="o "></Label>
+                                                    <Label Text="{Binding BrojKartice}"></Label>
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                        <StackLayout>
+                        <Label Text="Broj kartice:"></Label>
+                        <Entry x:Name="creditCardNumber" Placeholder="Unesite broj kartice" Keyboard="Numeric" TextChanged="promjenaTeksta_TextChanged"></Entry>
+                        <Label x:Name="ErrorLabelNumber" FontSize="10" TextColor="#ff8c00"></Label>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="creditCardExpMonth" Placeholder="Mjesec isteka" Keyboard="Numeric" TextChanged="promjenaTeksta_TextChanged" HorizontalOptions="FillAndExpand"></Entry>
+                                <Label x:Name="ErrorLabelMonth" FontSize="10" TextColor="#ff8c00"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="creditCardExpYear" Placeholder="Godina isteka" Keyboard="Numeric" TextChanged="promjenaTeksta_TextChanged" HorizontalOptions="FillAndExpand"></Entry>
+                                <Label x:Name="ErrorLabelYear" FontSize="10" TextColor="#ff8c00"></Label>
+
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="creditCardSecurityCode" Placeholder="CVV" Keyboard="Numeric" TextChanged="promjenaTeksta_TextChanged" HorizontalOptions="FillAndExpand"></Entry>
+                                <Label x:Name="ErrorLabelCVC" FontSize="10" TextColor="#ff8c00"></Label>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Margin="0,2,0,2">
+                        <BoxView 
+                        HeightRequest="1"
+                        BackgroundColor="White" 
+                        HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" >
+                        <Label Text="Ukupno: " Style="{DynamicResource ListItemTextStyle}"></Label>
+                        <Label Text="{Binding Ukupno}" x:Name="ukupnoEntry" Style="{DynamicResource ListItemTextStyle}"></Label>
+                        <Label Text="KM"  Style="{DynamicResource ListItemTextStyle}"></Label>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Button Text="Plati" Opacity="0.7" CornerRadius="5" BackgroundColor="#028090" Clicked="plati_Clicked"></Button>
+                    </StackLayout>
+
+
+                </StackLayout>
+        </ScrollView>
+
+    </Frame>
+      
+
+</ContentPage>

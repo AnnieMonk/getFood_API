@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:getFood.Mobile.ViewModels"
+             mc:Ignorable="d"
+             x:Class="getFood.Mobile.Views.RegistrationPage"
+             BackgroundImageSource="login.jpg">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel></viewModels:LoginViewModel>
+    </ContentPage.BindingContext>
+
+    <Frame Margin="25,25,25,25" BackgroundColor="White" Opacity="0.9">
+       
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="0,0,0,10">
+            <StackLayout Orientation="Horizontal">
+                <Button ImageSource="backarrow.png" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" Clicked="nazad_Clicked" BackgroundColor="Transparent"></Button>
+                <Label Text="Registruj se" FontSize="30" FontAttributes="Italic" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+           
+            <StackLayout>
+                <Label Text="Ime i prezime: " Style="{DynamicResource ListItemTextStyle}"></Label>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Entry x:Name="ime" Text="{Binding Ime}" Placeholder="Ime"  HorizontalOptions="FillAndExpand" FontSize="12" Opacity="0.7" BackgroundColor="White"></Entry>
+                        <Label Text="{Binding errorLabelIme}"  FontSize="10" TextColor="#ff8c00"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <Entry x:Name="prezime" Text="{Binding Prezime}" Placeholder="Prezime" HorizontalOptions="FillAndExpand" FontSize="12" Opacity="0.7" BackgroundColor="White"></Entry>
+                        <Label Text="{Binding errorLabelPrezime}" FontSize="10" TextColor="#ff8c00"></Label>
+                    </StackLayout>
+
+                   
+
+                </StackLayout>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Korisničko ime:" Style="{DynamicResource ListItemTextStyle}"></Label>
+                <Entry x:Name="korisnickoIme" Text="{Binding Username}" VerticalOptions="CenterAndExpand" FontSize="12" Opacity="0.7" BackgroundColor="White"></Entry>
+                <Label Text="{Binding errorLabelUsername}" FontSize="10" TextColor="#ff8c00"></Label>
+
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Email: " Style="{DynamicResource ListItemTextStyle}"></Label>
+                <Entry x:Name="email" FontSize="12" Opacity="0.7" Text="{Binding Email}"></Entry>
+                <Label Text="{Binding errorLabelEmail}" FontSize="10" TextColor="#ff8c00"></Label>
+
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Lozinka: " Style="{DynamicResource ListItemTextStyle}"></Label>
+                <Entry x:Name="lozinka" IsPassword="True" Text="{Binding Password}" FontSize="12" Opacity="0.7" ></Entry>
+                <Label Text="{Binding errorLabelPassword}" FontSize="10" TextColor="#ff8c00"></Label>
+
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Potvrdite lozinku: " Style="{DynamicResource ListItemTextStyle}"></Label>
+                <Entry x:Name="lozinkaConfirm" IsPassword="True" Text="{Binding PasswordConfirmation}"  FontSize="12" Opacity="0.7" ></Entry>
+                <Label Text="{Binding errorLabelConfirm}" FontSize="10" TextColor="#ff8c00"></Label>
+
+            </StackLayout>
+            <Button x:Name="RegistracijaButton" Command="{Binding RegisterCommand}" BackgroundColor="#FFC200" FontAttributes="Bold" HorizontalOptions="FillAndExpand" Text="Registracija" CornerRadius="2"></Button>
+
+        </StackLayout>
+    </Frame>
+  
+    
+</ContentPage>
