@@ -22,7 +22,7 @@
                                    PositionIn="Center"
                                    PositionOut="Center"
                                    ScaleIn="1.2"
-                                   ScaleOut="0.8" />
+                                   ScaleOut="0.8" /> 
     </pages:PopupPage.Animation>
    
         
