@@ -126,6 +126,7 @@
     <Content Include="kuponiBackground.jpg" />
     <Content Include="kvacica.png" />
     <Content Include="login.jpg" />
+    <Content Include="logout.png" />
     <Content Include="lokacija.png" />
     <Content Include="minus.png" />
     <Content Include="narudzbe.png" />

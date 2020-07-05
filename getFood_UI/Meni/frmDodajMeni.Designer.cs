@@ -92,7 +92,6 @@
             this.picEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picEdit.TabIndex = 18;
             this.picEdit.TabStop = false;
-            this.picEdit.Click += new System.EventHandler(this.picEdit_Click);
             // 
             // panel2
             // 
@@ -239,7 +238,6 @@
             this.produktiGrid.Size = new System.Drawing.Size(581, 231);
             this.produktiGrid.TabIndex = 41;
             this.produktiGrid.TabStop = false;
-            this.produktiGrid.Validating += new System.ComponentModel.CancelEventHandler(this.produktiGrid_Validating);
             // 
             // ID
             // 

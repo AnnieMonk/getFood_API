@@ -41,7 +41,32 @@ namespace getFood.Mobile
         
         _route = route;
         }
-       
+        public async Task<T> GetSlicniProdukti<T>(object search)
+        {
+            var url = $"{_apiUrl}/{_route}";
+
+            try
+            {
+                if (search != null)
+                {
+                    url += "?";
+                    url += await search.ToQueryString();
+                }
+
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+
+                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    //MessageBox.Show("Niste authentificirani");
+                    await Application.Current.MainPage.DisplayAlert("Greška", "Pogrešan username ili password!", "OK");
+                }
+
+                throw;
+            }
+        }
 
         public async Task<T> Get<T>(object search)
         {

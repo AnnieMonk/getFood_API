@@ -49,13 +49,10 @@ namespace getFood_UI.Izvještaji
         }
         private async  void cmbKorisnik_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var idObj = cmbKorisnik.SelectedIndex;
-
-            if (int.TryParse(idObj.ToString(), out int id))
-            {
-                korisnikId = id;
-                await LoadIzlaze(id);
-            }
+            var idObj = cmbKorisnik.SelectedItem as MKorisnik;
+            korisnikId = idObj.KorisnikId;
+           await LoadIzlaze(idObj.KorisnikId);
+           
         }
 
         private void racuniGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)

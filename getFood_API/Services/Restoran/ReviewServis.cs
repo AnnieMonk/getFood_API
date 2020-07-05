@@ -36,6 +36,10 @@ namespace getFood_API.Services.Restoran
             {
                 query = query.Where(x => x.RestoranId == search.RestoranId);
             }
+            if(search?.KorisnikId.HasValue == true)
+            {
+                query = query.Where(x => x.KorisnikId == search.KorisnikId);
+            }
 
             // var list = query.ToList();
 

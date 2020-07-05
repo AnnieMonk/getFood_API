@@ -17,23 +17,23 @@ namespace getFood.Mobile.ViewModels
         private readonly APIService _meniService = new APIService("Meni");
         private readonly APIService _kategorijeService = new APIService("Kategorija");
         private readonly APIService _favoritiService = new APIService("Favoriti");
-        private readonly APIService _recommenderService = new APIService("Recommender");
+  
         private readonly APIService _restoranService = new APIService("Restoran");
        
         public ProduktiViewModel()
         {
             InitCommand = new Command(async () => await Init());
-            RecommendInitCommand = new Command(async () => await RecommendInit());
+  
 
         }
         public ObservableCollection<MMeniProdukti> ProizvodiList { get; set; } = new ObservableCollection<MMeniProdukti>();
         public ObservableCollection<MKategorija> KategorijaList { get; set; } = new ObservableCollection<MKategorija>();
         public ObservableCollection<MMeni> MeniList { get; set; } = new ObservableCollection<MMeni>();
-        public ObservableCollection<MProdukti> RecommendedProductsList { get; set; } = new ObservableCollection<MProdukti>();
+       
       
       
         public ICommand InitCommand { get; set; }
-        public ICommand RecommendInitCommand { get; set; }
+   
 
         MKategorija _selectedKategorijeProizvoda = null;
         MMeni _selectedMeni = null;
@@ -174,16 +174,6 @@ namespace getFood.Mobile.ViewModels
            
         }
 
-        public async Task RecommendInit()
-        {
-            var list = await _recommenderService.Get<List<MProdukti>>(new RecommenderSearchRequest { KorisnikId = Global.prijavljeniKupac.KorisnikId });
-
-            RecommendedProductsList.Clear();
-
-            foreach(var x in list)
-            {
-                RecommendedProductsList.Add(x);
-            }
-        }
+       
     }
 }

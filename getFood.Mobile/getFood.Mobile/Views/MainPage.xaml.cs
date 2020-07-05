@@ -43,7 +43,7 @@ namespace getFood.Mobile.Views
                     case (int)MenuItemType.Korpa:
                         MenuPages.Add(id, new NavigationPage(new KorpaPage()) { BarBackgroundColor = Color.FromHex("#028090") });
                         break;
-                  
+                   
 
                 }
             }

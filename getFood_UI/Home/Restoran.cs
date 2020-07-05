@@ -20,13 +20,9 @@ namespace getFood_UI.Home
     {
 
         private readonly APIService _serviceRestoran = new APIService("Restoran");
-        private readonly APIService _serviceKorisnikRestoran = new APIService("KorisnikRestoran");
-        private readonly APIService _serviceKorisnik = new APIService("Korisnik");
         private readonly APIService _serviceKorisnikUloga = new APIService("KorisnikUloga");
-        private readonly APIService _serviceUloga = new APIService("Uloga");
         
         private readonly APIService _serviceKuhinja = new APIService("Kuhinja");
-        private readonly APIService _serviceReview = new APIService("Review");
 
         int restoranId = Global.prijavljeniRestoran.RestoranId;
         int logovaniId = Global.prijavljeniKorisnik.KorisnikId;
@@ -188,29 +184,31 @@ namespace getFood_UI.Home
         RestoranUpsertRequest request = new RestoranUpsertRequest();
         private async void btnSnimi_Click(object sender, EventArgs e)
         {
-
-           
-
-            request.Naziv = txtRestoran.Text;
-            request.MinimalnaNarudzba = int.Parse(txtMinNarudzba.Text);
-            request.Opis = txtOpis.Text;
-            request.RadnoVrijeme = txtRadnoVrijeme.Text;
-            request.Telefon = txtTelefon.Text;
-            request.Web = txtWeb.Text;
-          
-            request.Adresa = txtAdresa.Text;
-
-            var kuhinja = cmbKuhinja.SelectedValue;
-
-            if (int.TryParse(kuhinja.ToString(), out int kuhinjaId))
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                request.KuhinjaId = kuhinjaId;
-            }
-            
-            await _serviceRestoran.Update<MRestoran>(restoranId, request);
+                request.Naziv = txtRestoran.Text;
+                request.MinimalnaNarudzba = int.Parse(txtMinNarudzba.Text);
+                request.Opis = txtOpis.Text;
+                request.RadnoVrijeme = txtRadnoVrijeme.Text;
+                request.Telefon = txtTelefon.Text;
+                request.Web = txtWeb.Text;
 
-            UpdateForm();
-            CrnaBoja();
+                request.Adresa = txtAdresa.Text;
+
+                var kuhinja = cmbKuhinja.SelectedValue;
+
+                if (int.TryParse(kuhinja.ToString(), out int kuhinjaId))
+                {
+                    request.KuhinjaId = kuhinjaId;
+                }
+
+                await _serviceRestoran.Update<MRestoran>(restoranId, request);
+
+                UpdateForm();
+                CrnaBoja();
+            }
+
+          
         }
 
         private void txtRating_Click(object sender, EventArgs e)
@@ -242,7 +240,7 @@ namespace getFood_UI.Home
             else if (!Regex.Match(txtTelefon.Text, "^[+][(][0-9]{3}[)][0-9]{2}[/][0-9]{3}[-][0-9]{3}").Success)
             {
                 e.Cancel = true;
-                errorProviderRestoran.SetError(txtTelefon, Resources.Validation_RegexMatch);
+                errorProviderRestoran.SetError(txtTelefon, Resources.Validation_RegexMatch + "+(387)xx/xxx-xxx");
             }
             else
             {
@@ -318,7 +316,7 @@ namespace getFood_UI.Home
             else if (!Regex.Match(txtRadnoVrijeme.Text, "^[0-9]{2}[:][0-9]{2}[-][0-9]{2}[:][0-9]{2}").Success)
             {
                 e.Cancel = true;
-                errorProviderRestoran.SetError(txtRadnoVrijeme, Resources.Validation_RegexMatch);
+                errorProviderRestoran.SetError(txtRadnoVrijeme, Resources.Validation_RegexMatch + "xx:xx-xx:xx");
             }
             
             else

@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrometPoDanu));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.datum = new System.Windows.Forms.DateTimePicker();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.datum = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,19 +47,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(761, 650);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // datum
-            // 
-            this.datum.CalendarFont = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.datum.CustomFormat = "dd.MM.yyyy";
-            this.datum.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.datum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datum.Location = new System.Drawing.Point(159, 55);
-            this.datum.Name = "datum";
-            this.datum.Size = new System.Drawing.Size(207, 26);
-            this.datum.TabIndex = 1;
-            this.datum.Value = new System.DateTime(2020, 6, 16, 15, 12, 8, 0);
-            this.datum.ValueChanged += new System.EventHandler(this.datum_ValueChanged);
             // 
             // pictureBox1
             // 
@@ -97,6 +84,16 @@
             this.textBox1.TabIndex = 21;
             this.textBox1.Text = "Datum";
             // 
+            // datum
+            // 
+            this.datum.CustomFormat = "dd.MM.yyyy";
+            this.datum.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.datum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datum.Location = new System.Drawing.Point(146, 55);
+            this.datum.Name = "datum";
+            this.datum.Size = new System.Drawing.Size(200, 26);
+            this.datum.TabIndex = 22;
+            // 
             // PrometPoDanu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -104,9 +101,9 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(760, 779);
             this.ControlBox = false;
+            this.Controls.Add(this.datum);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.datum);
             this.Controls.Add(this.reportViewer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "PrometPoDanu";
@@ -122,9 +119,9 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.DateTimePicker datum;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker datum;
     }
 }

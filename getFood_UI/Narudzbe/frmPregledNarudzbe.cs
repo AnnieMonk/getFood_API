@@ -92,7 +92,7 @@ namespace getFood_UI.Narudzbe
             request.Datum = DateTime.Now;
             request.IznosBezPdv = ukupno / (decimal) 1.17;
             request.IznosSaPdv = ukupno;
-            request.KorisnikId = Global.prijavljeniKorisnik.KorisnikId;
+            request.KorisnikId = narudzbaStavke.Select(i => i.KorisnikId).First();
             try
             {
                 await _serviceIzlaz.Insert<MIzlaz>(request);
@@ -107,7 +107,7 @@ namespace getFood_UI.Narudzbe
 
             MessageBox.Show("Uspješno procesirana narudžba", "Info");
             this.Close();
-            await _narudzbe.LoadNarudzbe();
+            await _narudzbe.LoadNarudzbe(null);
             Reports.NarudzbeDetails frm = new Reports.NarudzbeDetails(narudzbe);
             frm.Show();
 

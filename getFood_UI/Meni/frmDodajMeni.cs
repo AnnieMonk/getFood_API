@@ -18,11 +18,8 @@ namespace getFood_UI.Meni
    
     public partial class frmDodajMeni : Form
     {
-        private readonly APIService _serviceProdukti = new APIService("Produkti");
-        private readonly APIService _serviceRestoran = new APIService("Restoran");
-        private readonly APIService _serviceKorisnik = new APIService("Korisnik");
+      
         private readonly APIService _serviceKorisnikUloga = new APIService("KorisnikUloga");
-        private readonly APIService _serviceKorisnikRestoran = new APIService("KorisnikRestoran");
         private readonly APIService _serviceMeni = new APIService("Meni");
         private readonly APIService _serviceMeniProdukti = new APIService("MeniProdukti");
         private Jelovnik _jelovnik;
@@ -156,43 +153,47 @@ namespace getFood_UI.Meni
             }
         }
 
-        List<int> listachekiranih = null; //ovdje su id-evi
+        List<int> listachekiranih = null; 
         private async void btnSnimiProizvod_Click(object sender, EventArgs e)
         {
-
-            MeniRequest.DatumNapravljen = DateTime.Now;
-            MeniRequest.Naziv = txtNaziv.Text;
-            MeniRequest.Opis = txtOpis.Text;
-
-            int restoranId = Global.prijavljeniRestoran.RestoranId;
-            MeniRequest.RestoranId = restoranId;
-
-            DateTime dt = Convert.ToDateTime(dateTimeRok.Value);
-            MeniRequest.DatumIsteka = dt;
-
-            foreach (DataGridViewRow row in produktiGrid.Rows)
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                if (Convert.ToBoolean(row.Cells[4].Value) == true)
+
+                MeniRequest.DatumNapravljen = DateTime.Now;
+                MeniRequest.Naziv = txtNaziv.Text;
+                MeniRequest.Opis = txtOpis.Text;
+
+                int restoranId = Global.prijavljeniRestoran.RestoranId;
+                MeniRequest.RestoranId = restoranId;
+
+                DateTime dt = Convert.ToDateTime(dateTimeRok.Value);
+                MeniRequest.DatumIsteka = dt;
+
+                foreach (DataGridViewRow row in produktiGrid.Rows)
                 {
-                    int id = Convert.ToInt32(row.Cells[0].Value);
-                    MeniRequest.listaProizvoda.Add(id);
+                    if (Convert.ToBoolean(row.Cells[4].Value) == true)
+                    {
+                        int id = Convert.ToInt32(row.Cells[0].Value);
+                        MeniRequest.listaProizvoda.Add(id);
+                    }
                 }
+
+                if (_meniId.HasValue)
+                {
+                    await _serviceMeni.Update<MMeni>(_meniId, MeniRequest);
+
+                }
+                else
+                {
+
+                    await _serviceMeni.Insert<MMeni>(MeniRequest);
+
+                }
+                MessageBox.Show("Operacija uspješna!");
+                this.Close();
+                await _jelovnik.UpdateForm();
             }
 
-            if (_meniId.HasValue)
-            {
-                await _serviceMeni.Update<MMeni>(_meniId, MeniRequest);
-
-            }
-            else
-            {
-
-                await _serviceMeni.Insert<MMeni>(MeniRequest);
-
-            }
-            MessageBox.Show("Operacija uspješna!");
-            this.Close();
-            await _jelovnik.UpdateForm();
 
         }
 
@@ -268,11 +269,6 @@ namespace getFood_UI.Meni
                 MessageBox.Show("Nemate pravo na ovu akciju!", "Upozorenje");
         }
 
-        private void picEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtNaziv_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNaziv.Text))
@@ -301,31 +297,6 @@ namespace getFood_UI.Meni
             }
         }
 
-        private void produktiGrid_Validating(object sender, CancelEventArgs e)
-        {
-            List<bool> values = new List<bool>();
-            foreach (DataGridViewRow row in produktiGrid.Rows)
-            {
-                if (Convert.ToBoolean(row.Cells[4].Value) == true)
-                {
-
-                    values.Add(Convert.ToBoolean(row.Cells[4].Value));
-
-
-                }
-            }
-
-            if (values.Count == 0)
-            {
-                e.Cancel = true;
-                errorProviderMeni.SetError(produktiGrid, "Odaberite bar jedan proizvod!");
-            }
-            else
-            {
-                e.Cancel = false;
-                errorProviderMeni.SetError(produktiGrid, null);
-            }
-
-        }
+        
     }
 }

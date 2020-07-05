@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getFood.Mobile.Android", "g
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getFood.Mobile.iOS", "getFood.Mobile\getFood.Mobile.iOS\getFood.Mobile.iOS.csproj", "{724B81C9-2F4E-4889-ACDB-47447912CD78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "getFood.Mobile", "getFood.Mobile\getFood.Mobile\getFood.Mobile.csproj", "{479BD538-03AC-4482-A120-155901A007E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "getFood.Mobile", "getFood.Mobile\getFood.Mobile\getFood.Mobile.csproj", "{479BD538-03AC-4482-A120-155901A007E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -108,6 +108,7 @@ Global
 		{314EB42E-B837-458C-8582-1F485D118093}.Release|x86.ActiveCfg = Release|Any CPU
 		{314EB42E-B837-458C-8582-1F485D118093}.Release|x86.Build.0 = Release|Any CPU
 		{6C22A1AB-AA56-48DE-8844-92B554CC15BC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6C22A1AB-AA56-48DE-8844-92B554CC15BC}.Debug|Any CPU.Build.0 = Debug|x86
 		{6C22A1AB-AA56-48DE-8844-92B554CC15BC}.Debug|ARM.ActiveCfg = Debug|ARM
 		{6C22A1AB-AA56-48DE-8844-92B554CC15BC}.Debug|ARM.Build.0 = Debug|ARM
 		{6C22A1AB-AA56-48DE-8844-92B554CC15BC}.Debug|ARM.Deploy.0 = Debug|ARM

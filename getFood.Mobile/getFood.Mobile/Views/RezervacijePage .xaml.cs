@@ -31,6 +31,7 @@ namespace getFood.Mobile.Views
             await model.Init();
             if (model.RezervacijeList.Count == 0)
             {
+                ovoSeNeVidi.IsVisible = false;
                 noRezervacije.IsVisible = true;
                 listaRezervacija.IsVisible = false;
             }

@@ -15,8 +15,7 @@ namespace getFood_Model.Requests
         public string Password { get; set; }
         public string PasswordConfirmation { get; set; }
         public List<int> Uloge { get; set; } = new List<int>();
-        public int? GradId { get; set; }
-        public int? KarticaId { get; set; }
+       
        
     }
 }

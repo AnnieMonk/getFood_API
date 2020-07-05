@@ -30,5 +30,10 @@ namespace getFood_UI.Reports
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter("BrojNarudzbe", _narudzba.BrojNarudzbe));
             this.reportViewer1.RefreshReport();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

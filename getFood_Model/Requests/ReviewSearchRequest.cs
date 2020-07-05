@@ -8,6 +8,7 @@ namespace getFood_Model.Requests
     {
         public int? RestoranId { get; set; }
         public int? ProduktId { get; set; }
+        public int? KorisnikId { get; set; }
         public string Ime { get; set; }
         public decimal? Ocjena { get; set; }
     }

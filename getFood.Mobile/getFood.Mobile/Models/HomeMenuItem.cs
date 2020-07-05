@@ -8,7 +8,7 @@ namespace getFood.Mobile.Models
     {
         Profil,
         Restorani,
-        Korpa,
+        Korpa
        
     }
     public class HomeMenuItem

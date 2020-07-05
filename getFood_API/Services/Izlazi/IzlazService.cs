@@ -22,7 +22,13 @@ namespace getFood_API.Services.Izlazi
 
             if (search.KorisnikId != null)
                 query = query.Where(i => i.KorisnikId == search.KorisnikId);
-
+            if (search.RestoranId != null)
+                query = query.Where(i => i.Narudzba.RestoranId == search.RestoranId);
+            if (search.Datum != null)
+            {
+                query = query.Where(i => i.Datum.Date == search.Datum.Value.Date);
+            }
+            
             var list = query.ToList();
 
             return _mapper.Map<List<MIzlaz>>(list);

@@ -9,6 +9,6 @@ namespace getFood_Model
         public int KategorijaId { get; set; }
         public string Naziv { get; set; }
 
-        public virtual ICollection<MMeniKategorija> MeniKategorija { get; set; }
+        public ICollection<MProdukti> Produkti { get; set; }
     }
 }

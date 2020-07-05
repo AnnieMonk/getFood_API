@@ -10,5 +10,6 @@ namespace getFood_Model.Requests
         public decimal Popust { get; set; }
         public DateTime DatumIsteka { get; set; }
         public int? KorisnikId { get; set; }
+        public int? StatusId { get; set; }
     }
 }

@@ -9,50 +9,65 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using getFood_Model;
 using System.IO;
+using getFood_Model.Requests;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace getFood_UI.Home
 {
     public partial class RadnaPloca : UserControl
     {
-        private readonly APIService _serviceKorisnik = new APIService("Korisnik");
         private readonly APIService _serviceProdukti = new APIService("Produkti");
+        private readonly APIService _serviceMeniProdukti = new APIService("MeniProdukti");
+        private readonly APIService _serviceIzlaz = new APIService("Izlaz");
         public RadnaPloca()
         {
             InitializeComponent();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        public async Task LoadZaradaDanas()
         {
+            var izlaz = await _serviceIzlaz.Get<List<MIzlaz>>(new IzlazSearchRequest { RestoranId = Global.prijavljeniRestoran.RestoranId, Datum = DateTime.Now });
+
+            txtPromet.Text = izlaz.Sum(i => i.IznosBezPdv).ToString();
+            txtDatum.Text = DateTime.Now.ToShortDateString();
+            txtUkupnoNarudzbi.Text = izlaz.Count.ToString();
+            txtUkupnoKupaca.Text = izlaz.Select(i => i.KorisnikId).Distinct().Sum().ToString();
 
         }
-
-
-        private async Task PopulateAsync()
+        public async Task PopulateAsync()
         {
-           
-
-
             var produkti = await _serviceProdukti.Get<List<MProdukti>>(null);
 
-            produkti = produkti.Where(i => i.Rating >= 4 ).OrderByDescending(i => i.Rating).ToList();
+            produkti = produkti.Where(i => i.Rating >= 4).OrderByDescending(i => i.Rating).ToList();
 
-            ListItem[] listItems = new ListItem[produkti.Count];
+            var meniprodukti = await _serviceMeniProdukti.Get<List<MMeniProdukti>>(new MeniProduktiSearchRequest { RestoranId = Global.prijavljeniRestoran.RestoranId });
+
+            List<MProdukti> zaPrikazati = new List<MProdukti>();
+
+            foreach(var x in produkti.Take(3))
+            {
+                if (meniprodukti.Select(i => i.ProduktiId).Contains(x.ProduktiId))
+                {
+                    zaPrikazati.Add(x);
+                }
+            }
+            NajboljiItems[] listItems = new NajboljiItems[zaPrikazati.Count];
 
             for (int i = 0; i < listItems.Length; i++)
             {
-                    listItems[i] = new ListItem();
-                    listItems[i].naziv = produkti[i].Naziv;
-                    MemoryStream ms = new MemoryStream((Byte[])produkti[i].SlikaThumb);
-                    listItems[i].slika = new Bitmap(ms);
-                   
-                listItems[i].cijena = produkti[i].Cijena;
-               
-                if(flowLayoutPanel.Controls.Count < 0)
+                listItems[i] = new NajboljiItems();
+                listItems[i].naziv = zaPrikazati[i].Naziv;
+                MemoryStream ms = new MemoryStream((Byte[])zaPrikazati[i].SlikaThumb);
+                listItems[i].slika = new Bitmap(ms);
+                listItems[i].rating = zaPrikazati[i].Rating ?? 0;
+                listItems[i].opis = zaPrikazati[i].Opis;
+
+                if (flowLayoutPanel.Controls.Count < 0)
                 {
                     flowLayoutPanel.Controls.Clear();
                 }
                 else
-                flowLayoutPanel.Controls.Add(listItems[i]);
+                    flowLayoutPanel.Controls.Add(listItems[i]);
 
 
             }
@@ -63,6 +78,8 @@ namespace getFood_UI.Home
         private async void RadnaPloca_Load(object sender, EventArgs e)
         {
             await PopulateAsync();
+            await LoadZaradaDanas();
         }
+
     }
 }

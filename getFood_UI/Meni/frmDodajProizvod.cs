@@ -15,6 +15,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.ModelBinding;
 using System.Windows.Forms;
 
 namespace getFood_UI.Meni
@@ -153,6 +154,7 @@ namespace getFood_UI.Meni
         }
         private async void btnSnimiProizvod_Click(object sender, EventArgs e)
         {
+           
             var sastojci = chListSastojci.CheckedItems.Cast<MSastojci>().Select(x => x.SastojciId).ToList();
             var meni = chbMeni.CheckedItems.Cast<MMeni>().Select(x => x.MeniId).ToList();
 
@@ -174,22 +176,33 @@ namespace getFood_UI.Meni
 
             if (_id.HasValue)
             {
-
-                await _serviceProdukti.Update<MProdukti>(_id, request);
-                MessageBox.Show("Operacija uspješna");
-                this.Close();
-                await _jelovnik.UpdateForm();
+                if (ValidateChildren(ValidationConstraints.Enabled))
+                {
+                    await _serviceProdukti.Update<MProdukti>(_id, request);
+                    MessageBox.Show("Operacija uspješna");
+                    this.Close();
+                    await _jelovnik.UpdateForm();
+                }
+               
+                  
+              
+              
             }
             else
             {
+                if (ValidateChildren(ValidationConstraints.Enabled))
+                {
+                    await _serviceProdukti.Insert<MProdukti>(request);
 
-                await _serviceProdukti.Insert<MProdukti>(request);
-
-                MessageBox.Show("Operacija uspješna");
+                    MessageBox.Show("Operacija uspješna");
 
 
-                this.Close();
-                await _jelovnik.UpdateForm();
+                    this.Close();
+                    await _jelovnik.UpdateForm();
+
+                }
+
+
             }
         }
         private async void btnObrisiProizvod_Click(object sender, EventArgs e)
@@ -518,7 +531,6 @@ namespace getFood_UI.Meni
         #endregion
 
         #region Validacija
-
         private void txtNaziv_Validating(object sender, CancelEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNaziv.Text))
@@ -531,6 +543,7 @@ namespace getFood_UI.Meni
             {
                 e.Cancel = false;
                 errorProviderProdukti.SetError(txtNaziv, null);
+
             }
         }
 

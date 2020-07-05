@@ -178,11 +178,11 @@
     <Compile Include="Izvještaji\frmUpitKorisnik.Designer.cs">
       <DependentUpon>frmUpitKorisnik.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListItem.cs">
+    <Compile Include="NajboljiItems.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ListItem.Designer.cs">
-      <DependentUpon>ListItem.cs</DependentUpon>
+    <Compile Include="NajboljiItems.Designer.cs">
+      <DependentUpon>NajboljiItems.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -299,8 +299,8 @@
     <EmbeddedResource Include="Izvještaji\frmUpitKorisnik.resx">
       <DependentUpon>frmUpitKorisnik.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListItem.resx">
-      <DependentUpon>ListItem.cs</DependentUpon>
+    <EmbeddedResource Include="NajboljiItems.resx">
+      <DependentUpon>NajboljiItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

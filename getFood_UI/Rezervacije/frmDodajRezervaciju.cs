@@ -38,36 +38,40 @@ namespace getFood_UI.Rezervacije
        
         private async void btnDodaj_Click(object sender, EventArgs e)
         {
-            request.DatumVrijeme = dateTime.Value;
-            request.BrojLjudi = Convert.ToInt32(numBrojljudi.Value);
-            request.RestoranId = RestoranID;
-          
-            var resultStatus = await _serviceStatus.Get<List<MStatus>>(null);
-
-            int statusId = 0;
-            foreach (var status in resultStatus)
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                if (status.Naziv == "Potvrđeno")
+                request.DatumVrijeme = dateTime.Value;
+                request.BrojLjudi = Convert.ToInt32(numBrojljudi.Value);
+                request.RestoranId = RestoranID;
+
+                var resultStatus = await _serviceStatus.Get<List<MStatus>>(null);
+
+                int statusId = 0;
+                foreach (var status in resultStatus)
                 {
-                    statusId = status.StatusId;
+                    if (status.Naziv == "Potvrđena")
+                    {
+                        statusId = status.StatusId;
+                    }
                 }
-            }
-            request.StatusId = statusId;
+                request.StatusId = statusId;
 
-         
-            var korisnik = await _serviceKorisnik.Get<List<MKorisnik>>(new KorisnikSearchRequest { Ime = txtIme.Text, Prezime = txtPrezime.Text, KorisnickoIme= txtKorisnickoIme.Text });
-            if(korisnik.Count == 0)
-            {
-                MessageBox.Show("Korisnik ne postoji!", "Upozorenje");
-            }
-            else
-            {
-                request.KorisnikId = korisnik.Select(i => i.KorisnikId).FirstOrDefault();
 
-                await _serviceRezervacija.Insert<MRezervacije>(request);
-                _rezervacije.Rezervacije_Load(sender, e);
-                MessageBox.Show("Uspješno dodana rezervacija!", "Uspjeh");
-                this.Close();
+                var korisnik = await _serviceKorisnik.Get<List<MKorisnik>>(new KorisnikSearchRequest { Ime = txtIme.Text, Prezime = txtPrezime.Text, KorisnickoIme = txtKorisnickoIme.Text });
+                if (korisnik.Count == 0)
+                {
+                    MessageBox.Show("Korisnik ne postoji!", "Upozorenje");
+                }
+                else
+                {
+                    request.KorisnikId = korisnik.Select(i => i.KorisnikId).FirstOrDefault();
+
+                    await _serviceRezervacija.Insert<MRezervacije>(request);
+                    _rezervacije.Rezervacije_Load(sender, e);
+                    MessageBox.Show("Uspješno dodana rezervacija!", "Uspjeh");
+                    this.Close();
+
+                }
 
             }
 

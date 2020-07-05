@@ -49,6 +49,8 @@
             this.chbOtkazano = new System.Windows.Forms.CheckBox();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.lblTelefon = new System.Windows.Forms.Label();
+            this.txtTelefon = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -137,7 +139,7 @@
             // 
             this.lblNapomena.AutoSize = true;
             this.lblNapomena.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblNapomena.Location = new System.Drawing.Point(40, 281);
+            this.lblNapomena.Location = new System.Drawing.Point(40, 310);
             this.lblNapomena.Name = "lblNapomena";
             this.lblNapomena.Size = new System.Drawing.Size(92, 18);
             this.lblNapomena.TabIndex = 67;
@@ -147,7 +149,7 @@
             // 
             this.lblBrojLjudi.AutoSize = true;
             this.lblBrojLjudi.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblBrojLjudi.Location = new System.Drawing.Point(40, 226);
+            this.lblBrojLjudi.Location = new System.Drawing.Point(40, 266);
             this.lblBrojLjudi.Name = "lblBrojLjudi";
             this.lblBrojLjudi.Size = new System.Drawing.Size(71, 18);
             this.lblBrojLjudi.TabIndex = 68;
@@ -155,7 +157,7 @@
             // 
             // numBrojljudi
             // 
-            this.numBrojljudi.Location = new System.Drawing.Point(164, 226);
+            this.numBrojljudi.Location = new System.Drawing.Point(164, 266);
             this.numBrojljudi.Margin = new System.Windows.Forms.Padding(4);
             this.numBrojljudi.Name = "numBrojljudi";
             this.numBrojljudi.ReadOnly = true;
@@ -281,11 +283,33 @@
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(164, 281);
+            this.txtNapomena.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtNapomena.Location = new System.Drawing.Point(164, 310);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.ReadOnly = true;
             this.txtNapomena.Size = new System.Drawing.Size(247, 87);
             this.txtNapomena.TabIndex = 81;
+            // 
+            // lblTelefon
+            // 
+            this.lblTelefon.AutoSize = true;
+            this.lblTelefon.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblTelefon.Location = new System.Drawing.Point(40, 221);
+            this.lblTelefon.Name = "lblTelefon";
+            this.lblTelefon.Size = new System.Drawing.Size(61, 18);
+            this.lblTelefon.TabIndex = 82;
+            this.lblTelefon.Text = "Telefon";
+            // 
+            // txtTelefon
+            // 
+            this.txtTelefon.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtTelefon.Location = new System.Drawing.Point(164, 213);
+            this.txtTelefon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTelefon.Name = "txtTelefon";
+            this.txtTelefon.ReadOnly = true;
+            this.txtTelefon.Size = new System.Drawing.Size(247, 26);
+            this.txtTelefon.TabIndex = 83;
             // 
             // frmPregledRezervacije
             // 
@@ -294,6 +318,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(661, 567);
             this.ControlBox = false;
+            this.Controls.Add(this.txtTelefon);
+            this.Controls.Add(this.lblTelefon);
             this.Controls.Add(this.txtNapomena);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label2);
@@ -350,5 +376,7 @@
         private System.Windows.Forms.CheckBox chbOtkazano;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.TextBox txtNapomena;
+        private System.Windows.Forms.Label lblTelefon;
+        private System.Windows.Forms.TextBox txtTelefon;
     }
 }

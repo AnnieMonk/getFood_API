@@ -112,5 +112,10 @@ namespace getFood.Mobile.Views
             minimalnaNarudzba.Text = slider.Value.ToString("0");
             model.MinimalnaNarudzba = Convert.ToInt32(slider.Value);
         }
+
+        private async void Odjava_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new LoginPage());
+        }
     }
 }

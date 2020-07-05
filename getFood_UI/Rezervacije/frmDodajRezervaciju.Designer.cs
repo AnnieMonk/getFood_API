@@ -44,6 +44,7 @@
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.errorProviderRezervacija = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picEdit)).BeginInit();
@@ -155,7 +156,6 @@
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(116, 26);
             this.txtPrezime.TabIndex = 82;
-            this.txtPrezime.Text = "Prezime";
             this.txtPrezime.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrezime_Validating);
             // 
             // txtIme
@@ -166,7 +166,6 @@
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(125, 26);
             this.txtIme.TabIndex = 80;
-            this.txtIme.Text = "Ime";
             this.txtIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtIme_Validating);
             // 
             // btnDodaj
@@ -194,7 +193,6 @@
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(247, 26);
             this.txtKorisnickoIme.TabIndex = 90;
-            this.txtKorisnickoIme.Text = "Korisnicko ime";
             this.txtKorisnickoIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtKorisnickoIme_Validating);
             // 
             // label2
@@ -204,13 +202,24 @@
             this.label2.Location = new System.Drawing.Point(56, 142);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 18);
+            this.label2.Size = new System.Drawing.Size(101, 18);
             this.label2.TabIndex = 91;
-            this.label2.Text = "Profil";
+            this.label2.Text = "Ime/Prezime";
             // 
             // errorProviderRezervacija
             // 
             this.errorProviderRezervacija.ContainerControl = this;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(56, 193);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 18);
+            this.label3.TabIndex = 92;
+            this.label3.Text = "Korisničko ime";
             // 
             // frmDodajRezervaciju
             // 
@@ -219,6 +228,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(664, 390);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtKorisnickoIme);
             this.Controls.Add(this.btnDodaj);
@@ -262,5 +272,6 @@
         private System.Windows.Forms.TextBox txtKorisnickoIme;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ErrorProvider errorProviderRezervacija;
+        private System.Windows.Forms.Label label3;
     }
 }

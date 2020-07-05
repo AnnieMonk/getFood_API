@@ -28,7 +28,6 @@ namespace getFood_API.Database
         public string LozinkaHash { get; set; }
         public string LozinkaSalt { get; set; }
         public bool? Status { get; set; }
-        public int? GradId { get; set; }
 
         public ICollection<Favoriti> Favoriti { get; set; }
         public ICollection<Izlaz> Izlaz { get; set; }

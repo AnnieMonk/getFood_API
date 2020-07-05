@@ -163,7 +163,7 @@
             this.txtPretrazi.Name = "txtPretrazi";
             this.txtPretrazi.Size = new System.Drawing.Size(157, 31);
             this.txtPretrazi.TabIndex = 4;
-            this.txtPretrazi.Text = "Unesite pojam";
+            this.txtPretrazi.Text = "Unesite naziv";
             this.txtPretrazi.TextChanged += new System.EventHandler(this.txtPretrazi_TextChanged);
             // 
             // btnPretrazi
@@ -177,7 +177,6 @@
             this.btnPretrazi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnPretrazi.TabIndex = 6;
             this.btnPretrazi.TabStop = false;
-            this.btnPretrazi.Click += new System.EventHandler(this.btnPretrazi_Click);
             // 
             // cmbMeni
             // 

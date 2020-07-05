@@ -22,6 +22,7 @@ namespace getFood.Mobile.Views
         public NarudzbaViewModel model = new NarudzbaViewModel();
         private readonly APIService _narudzbaService = new APIService("Narudzba");
         private readonly APIService _dostavaService = new APIService("Dostava");
+        private readonly APIService _kuponiService = new APIService("Kuponi");
         private string brojKarticeRegex = @"\b(?:(?:\d[ -]*?){17,}|((?:\d[ -]*?){13,16}))\b";
         private string mjesecRegex = @"(^0?[1-9]$)|(^1[0-2]$)";
         private string godinaRefex = @"^[2]\d{3}$";
@@ -243,10 +244,19 @@ namespace getFood.Mobile.Views
                 RestoranId = model.ProduktDetailViewModel.Select(i => i.RestoranId).FirstOrDefault()
             };
 
+            var kupon = kuponiList.SelectedItem as MKuponi;
+
+           // var resultK = await _kuponiService.GetById<MKuponi>(kupon.KuponId);
             if (kuponiList.SelectedIndex == -1)
                 requestN.KuponId = null;
             else
-                requestN.KuponId = kuponiList.SelectedIndex + 1;
+            {
+                requestN.KuponId = kupon.KuponId;
+                //označi ga kao iskorištenog
+
+                await _kuponiService.Update<MKuponi>(kupon.KuponId, new KuponiUpsertRequest { DatumIsteka = kupon.DatumIsteka, Kod = kupon.Kod, KorisnikId = kupon.KorisnikId, Popust = kupon.Popust, StatusId = kupon.StatusId });
+            }
+              
 
             foreach (var item in CartService.Cart)
             {

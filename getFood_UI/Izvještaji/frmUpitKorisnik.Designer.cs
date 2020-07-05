@@ -89,7 +89,7 @@
             this.textBox2.Location = new System.Drawing.Point(41, 131);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(105, 27);
+            this.textBox2.Size = new System.Drawing.Size(165, 27);
             this.textBox2.TabIndex = 24;
             this.textBox2.Text = "Ime i prezime";
             // 
@@ -97,7 +97,7 @@
             // 
             this.cmbKorisnik.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbKorisnik.FormattingEnabled = true;
-            this.cmbKorisnik.Location = new System.Drawing.Point(167, 128);
+            this.cmbKorisnik.Location = new System.Drawing.Point(224, 128);
             this.cmbKorisnik.Name = "cmbKorisnik";
             this.cmbKorisnik.Size = new System.Drawing.Size(144, 28);
             this.cmbKorisnik.TabIndex = 25;

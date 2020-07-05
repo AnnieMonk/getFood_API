@@ -23,7 +23,7 @@ namespace getFood.Mobile.Views
             {
                 new HomeMenuItem{Id = MenuItemType.Profil, Title="Profil", ImageSource="user.png"},
                 new HomeMenuItem {Id = MenuItemType.Restorani, Title="Restorani", ImageSource="restoran.png" },
-                new HomeMenuItem {Id = MenuItemType.Korpa, Title="Korpa", ImageSource="cart.png" },
+                new HomeMenuItem {Id = MenuItemType.Korpa, Title="Korpa", ImageSource="cart.png" }
               
             };
 

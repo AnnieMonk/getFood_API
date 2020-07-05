@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace getFood_UI
 {
-    public partial class ListItem : UserControl
+    public partial class NajboljiItems : UserControl
     {
-        public ListItem()
+        public NajboljiItems()
         {
             InitializeComponent();
         }
@@ -34,12 +34,20 @@ namespace getFood_UI
             set { _naziv = value; txtNaziv.Text = value; }
         }
 
-        private decimal _cijena;
+        private string _opis;
 
-        public decimal cijena
+        public string opis
         {
-            get { return _cijena; }
-            set { _cijena = value; txtCijena.Text = value.ToString(); }
+            get { return _opis; }
+            set { _opis = value; txtOpis.Text = value; }
+        }
+
+        private decimal _rating;
+
+        public decimal rating
+        {
+            get { return _rating; }
+            set { _rating = value; txtRating.Text = value.ToString(); }
         }
 
 

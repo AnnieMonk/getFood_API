@@ -19,11 +19,8 @@ namespace getFood_UI.Rezervacije
     {
         private readonly APIService _serviceRezervacija = new APIService("Rezervacije");
         private readonly APIService _serviceKorisnik = new APIService("Korisnik");
-        private readonly APIService _serviceStatus = new APIService("Status");
-        private readonly APIService _serviceStol = new APIService("Stol");
-        private readonly APIService _serviceRezervacijaStol = new APIService("RezervacijaStol");
 
-        private int RestoranID = Convert.ToInt32(ConfigurationManager.AppSettings["RestoranID"]);
+        private int RestoranID = Global.prijavljeniRestoran.RestoranId;
         private int? _rezervacijaId = null;
 
         public getFood_UI.Home.Rezervacije rezervacije;
@@ -53,6 +50,7 @@ namespace getFood_UI.Rezervacije
 
             txtIme.Text = korisnikResult.Ime;
             txtPrezime.Text = korisnikResult.Prezime;
+            txtTelefon.Text = korisnikResult.Telefon;
             dateTime.Value = rezervacijaResult.DatumVrijeme;
             numBrojljudi.Value = rezervacijaResult.BrojLjudi;
             txtNapomena.Text = rezervacijaResult.Napomena;

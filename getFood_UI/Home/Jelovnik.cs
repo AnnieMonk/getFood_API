@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace getFood_UI.Home
 {
-    //PRETRAGA GLEDA SVE RESTORANE
+  
     public partial class Jelovnik : UserControl
     {
         private static readonly APIService _serviceProdukti = new APIService("Produkti");
@@ -22,7 +22,7 @@ namespace getFood_UI.Home
         public Jelovnik()
         {
             InitializeComponent();
-            //UpdateForm();
+           
         }
        
         public async Task<bool> IsVlasnik()
@@ -63,7 +63,7 @@ namespace getFood_UI.Home
             if (await IsVlasnik())
             {
                 frmDodajProizvod frm = new frmDodajProizvod(this);
-                frm.Show();
+                frm.ShowDialog();
             }
             else
                 MessageBox.Show("Nemate pravo na ovu akciju!", "Upozorenje");
@@ -173,11 +173,6 @@ namespace getFood_UI.Home
             }
 
             
-        }
-
-        private void btnPretrazi_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

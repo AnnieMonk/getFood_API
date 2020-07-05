@@ -34,7 +34,7 @@ namespace getFood.Mobile.Views
             base.OnAppearing();
           
             await model.Init();
-            await model.RecommendInit();
+          
             kategorijaList.SelectedIndex = 0;
             meniList.SelectedIndex = 0;
 

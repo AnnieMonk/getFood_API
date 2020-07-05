@@ -41,9 +41,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(496, 55);
+            this.pictureBox1.Location = new System.Drawing.Point(127, 466);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(84, 76);
+            this.pictureBox1.Size = new System.Drawing.Size(181, 87);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -56,10 +56,10 @@
             this.btnBestFood.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBestFood.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnBestFood.ForeColor = System.Drawing.Color.White;
-            this.btnBestFood.Location = new System.Drawing.Point(442, 370);
+            this.btnBestFood.Location = new System.Drawing.Point(775, 263);
             this.btnBestFood.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBestFood.Name = "btnBestFood";
-            this.btnBestFood.Size = new System.Drawing.Size(200, 39);
+            this.btnBestFood.Size = new System.Drawing.Size(181, 87);
             this.btnBestFood.TabIndex = 49;
             this.btnBestFood.Text = "Prodani proizvodi";
             this.btnBestFood.UseVisualStyleBackColor = false;
@@ -73,10 +73,10 @@
             this.btnGodisnjiPromet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGodisnjiPromet.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnGodisnjiPromet.ForeColor = System.Drawing.Color.White;
-            this.btnGodisnjiPromet.Location = new System.Drawing.Point(442, 264);
+            this.btnGodisnjiPromet.Location = new System.Drawing.Point(452, 263);
             this.btnGodisnjiPromet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGodisnjiPromet.Name = "btnGodisnjiPromet";
-            this.btnGodisnjiPromet.Size = new System.Drawing.Size(200, 39);
+            this.btnGodisnjiPromet.Size = new System.Drawing.Size(181, 87);
             this.btnGodisnjiPromet.TabIndex = 50;
             this.btnGodisnjiPromet.Text = "Godišnji promet";
             this.btnGodisnjiPromet.UseVisualStyleBackColor = false;
@@ -90,10 +90,10 @@
             this.btnPrometPoDanu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrometPoDanu.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrometPoDanu.ForeColor = System.Drawing.Color.White;
-            this.btnPrometPoDanu.Location = new System.Drawing.Point(442, 167);
+            this.btnPrometPoDanu.Location = new System.Drawing.Point(127, 263);
             this.btnPrometPoDanu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrometPoDanu.Name = "btnPrometPoDanu";
-            this.btnPrometPoDanu.Size = new System.Drawing.Size(200, 39);
+            this.btnPrometPoDanu.Size = new System.Drawing.Size(181, 87);
             this.btnPrometPoDanu.TabIndex = 52;
             this.btnPrometPoDanu.Text = "Promet po danu";
             this.btnPrometPoDanu.UseVisualStyleBackColor = false;
@@ -107,10 +107,10 @@
             this.btnIzdavanjeRacuna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIzdavanjeRacuna.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnIzdavanjeRacuna.ForeColor = System.Drawing.Color.White;
-            this.btnIzdavanjeRacuna.Location = new System.Drawing.Point(442, 599);
+            this.btnIzdavanjeRacuna.Location = new System.Drawing.Point(775, 466);
             this.btnIzdavanjeRacuna.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnIzdavanjeRacuna.Name = "btnIzdavanjeRacuna";
-            this.btnIzdavanjeRacuna.Size = new System.Drawing.Size(200, 39);
+            this.btnIzdavanjeRacuna.Size = new System.Drawing.Size(181, 87);
             this.btnIzdavanjeRacuna.TabIndex = 53;
             this.btnIzdavanjeRacuna.Text = "Izdavanje računa";
             this.btnIzdavanjeRacuna.UseVisualStyleBackColor = false;
@@ -124,10 +124,10 @@
             this.btnRezervacije.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRezervacije.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnRezervacije.ForeColor = System.Drawing.Color.White;
-            this.btnRezervacije.Location = new System.Drawing.Point(442, 474);
+            this.btnRezervacije.Location = new System.Drawing.Point(462, 466);
             this.btnRezervacije.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRezervacije.Name = "btnRezervacije";
-            this.btnRezervacije.Size = new System.Drawing.Size(200, 39);
+            this.btnRezervacije.Size = new System.Drawing.Size(181, 87);
             this.btnRezervacije.TabIndex = 55;
             this.btnRezervacije.Text = "Rezervacije";
             this.btnRezervacije.UseVisualStyleBackColor = false;

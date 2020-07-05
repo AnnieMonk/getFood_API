@@ -14,7 +14,8 @@ namespace getFood.Mobile.ViewModels
     public class ProduktDetailViewModel : BaseViewModel
     {
         private readonly APIService _meniProduktiService = new APIService("MeniProdukti");
-     
+        private readonly APIService _recommenderService = new APIService("Recommender");
+
         public ProduktDetailViewModel()
         {
             InitCommand = new Command(async () => await Init());
@@ -24,12 +25,14 @@ namespace getFood.Mobile.ViewModels
             NaruciCommand = new Command(async () => await Naruci());
 
             UkloniCommand = new Command(async() => await Ukloni());
+            RecommendInitCommand = new Command(async () => await RecommendInit());
 
         }
         public ObservableCollection<MProduktiSastojci> SastojciList { get; set; } = new ObservableCollection<MProduktiSastojci>();
-
+        public ObservableCollection<MProdukti> RecommendedProductsList { get; set; } = new ObservableCollection<MProdukti>();
 
         public ICommand InitCommand { get; set; }
+        public ICommand RecommendInitCommand { get; set; }
         public ICommand PovecajKolicinuCommand { get; set; }
       
         public ICommand SmanjiKolicinuCommand { get; set; }
@@ -208,6 +211,18 @@ namespace getFood.Mobile.ViewModels
                 }
             }
           
+        }
+
+        public async Task RecommendInit()
+        {
+            var list = await _recommenderService.GetSlicniProdukti<List<MProdukti>>(new RecommenderSearchRequest { ProduktId = MeniProdukt.ProduktiId, RestoranId = MeniProdukt.RestoranId });
+
+            RecommendedProductsList.Clear();
+
+            foreach (var x in list)
+            {
+                RecommendedProductsList.Add(x);
+            }
         }
     }
 }

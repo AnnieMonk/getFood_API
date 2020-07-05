@@ -346,6 +346,7 @@
             this.txtLogovaniKorisnik.Size = new System.Drawing.Size(91, 24);
             this.txtLogovaniKorisnik.TabIndex = 15;
             this.txtLogovaniKorisnik.Text = "Anisa";
+            this.txtLogovaniKorisnik.Click += new System.EventHandler(this.txtLogovaniKorisnik_Click);
             // 
             // pictureBox3
             // 

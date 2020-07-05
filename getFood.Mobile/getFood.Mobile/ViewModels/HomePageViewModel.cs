@@ -65,8 +65,8 @@ namespace getFood.Mobile.ViewModels
      
         public async Task Init()
         {
-            
-            List<MRestoran> list = null;
+
+           
 
             if (KuhinjaList.Count == 0)
             {
@@ -80,51 +80,71 @@ namespace getFood.Mobile.ViewModels
                 {
                     KuhinjaList.Add(y);
                 }
-   
+
             }
 
-            
+            //List<MRestoran> list = null;
+
             if (SelectedKuhinja != null)
             {
+
+                
                 if (SelectedKuhinja.KuhinjaId == 0 && MinimalnaNarudzba == null)
                 {
-                    list = await _restoraniService.Get<List<MRestoran>>(null);
+                    
+                    var list = await _restoraniService.Get<List<MRestoran>>(null);
+                    await PopulateList(list);
+                    
                 }
 
                 else if(SelectedKuhinja.KuhinjaId == 0 && MinimalnaNarudzba != null)
                 {
+                   
                     //prikazi sve kuhinje ali odabranu minimalnu
-                    list = await _restoraniService.Get<List<MRestoran>>(new RestoranSearchRequest { MinimalnaNarudzba = MinimalnaNarudzba });
+                    var list = await _restoraniService.Get<List<MRestoran>>(new RestoranSearchRequest { MinimalnaNarudzba = MinimalnaNarudzba });
+                    await PopulateList(list);
 
                 }
 
                 else if(SelectedKuhinja.KuhinjaId > 0 && MinimalnaNarudzba == null)
                 {
-                  //odabrane je kuhinja ali nije minimalno
-                    list = await _restoraniService.Get<List<MRestoran>>(new RestoranSearchRequest { KuhinjaId = SelectedKuhinja.KuhinjaId});
+                   
+                    //odabrane je kuhinja ali nije minimalno
+                    var list = await _restoraniService.Get<List<MRestoran>>(new RestoranSearchRequest { KuhinjaId = SelectedKuhinja.KuhinjaId});
+                    await PopulateList(list);
 
-                    
+
                 }
                 else if(SelectedKuhinja.KuhinjaId > 0 && MinimalnaNarudzba != null)
                 {
+                  
                     //odabrano oboje
-                    list = await _restoraniService.Get<List<MRestoran>>(new RestoranSearchRequest { KuhinjaId = SelectedKuhinja.KuhinjaId, MinimalnaNarudzba = MinimalnaNarudzba });
+
+                    var list = await _restoraniService.Get<List<MRestoran>>(new RestoranSearchRequest { KuhinjaId = SelectedKuhinja.KuhinjaId, MinimalnaNarudzba = MinimalnaNarudzba });
+                    await PopulateList(list);
 
                 }
 
             }
             else 
             {
+               
+                var list = await _restoraniService.Get<List<MRestoran>>(null);
+                await PopulateList(list);
 
-                list = await _restoraniService.Get<List<MRestoran>>(null);
 
-              
             }
 
-            RestoranList.Clear();
-            NajbliziRestoraniList.Clear();
+         
+
+
+        }
+        public async Task PopulateList(List<MRestoran> list)
+        {
             try
             {
+                RestoranList.Clear();
+                NajbliziRestoraniList.Clear();
                 var request = new GeolocationRequest(GeolocationAccuracy.Lowest);
                 var location = await Geolocation.GetLocationAsync(request);
                 Location korisnikPozicija = new Location(location.Latitude, location.Longitude);
@@ -143,11 +163,12 @@ namespace getFood.Mobile.ViewModels
             }
             catch (Exception ex)
             {
-                
-            }
 
+            }
         }
-   
-      
+
+
     }
+
+  
 }

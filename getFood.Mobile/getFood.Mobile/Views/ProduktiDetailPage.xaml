@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewModels="clr-namespace:getFood.Mobile.ViewModels" xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:converters="clr-namespace:getFood.Mobile.Converters"
                   mc:Ignorable="d"
              x:Class="getFood.Mobile.Views.ProduktiDetailPage">
-
+    <ContentPage.BindingContext>
+        <viewModels:ProduktDetailViewModel></viewModels:ProduktDetailViewModel>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ImageConverter x:Key="imgConv"></converters:ImageConverter>
@@ -22,10 +24,13 @@
                                    ScaleIn="1.2"
                                    ScaleOut="0.8" />
     </pages:PopupPage.Animation>
+   
+        
+   
     
-    
-    <Frame Margin="25,100,25,100" BackgroundColor="White">
-    <StackLayout Orientation="Vertical"
+    <Frame Margin="25,50,25,25" BackgroundColor="White">
+        <ScrollView>
+            <StackLayout Orientation="Vertical"
                  HorizontalOptions="Center"
                  VerticalOptions="Center"
                  Margin="25,1,25,1">
@@ -67,7 +72,7 @@
             </StackLayout>
 
 
-            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  Margin="0,10,0,0">
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="200"  Margin="0,10,0,0">
                
                 <StackLayout Orientation="Vertical">
                     <Label Text="Sastojci: "
@@ -113,67 +118,106 @@
     </ListView>
                 </StackLayout>
 
-                <StackLayout Orientation="Vertical">
-                    <Image  Source="{Binding SlikaThmb, Converter={StaticResource imgConv}}"  WidthRequest="200" HeightRequest="200" Aspect="AspectFill" ></Image>
-                
+                    <StackLayout Orientation="Vertical">
+                        <Image  Source="{Binding SlikaThmb, Converter={StaticResource imgConv}}"  WidthRequest="200" HeightRequest="200" Aspect="AspectFill" ></Image>
+                       
+                    </StackLayout>
+                   
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand">
+                    <Label Text="{Binding Rating}" TextColor="Black"  FontSize="13" VerticalTextAlignment="Center"></Label>
+                    <Image Source="rating.png" x:Name="prvaZvijezda" IsVisible="True"></Image>
+                    <Button Text="Osvrti" TextColor="#028090" Clicked="Button_Clicked" CornerRadius="10"></Button>
+                    <!--<Label Text="Osvrti" TextColor="#028090" TextDecorations="Underline">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>-->
+                </StackLayout>
+                <StackLayout Margin="0,0,0,0" >
+                    <Label Text="Preporučeni (scroll): " TextColor="#028090"></Label>
+                    <CarouselView ItemsSource="{Binding RecommendedProductsList}"  Margin="0,0,0,20" VerticalOptions="StartAndExpand" HeightRequest="150" >
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                           ItemSpacing="20" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame HasShadow="True" 
+                       CornerRadius="5"
+                       HorizontalOptions="Center"
+                       VerticalOptions="FillAndExpand" Padding="0" Margin="0" WidthRequest="50" HeightRequest="110">
+                                    <StackLayout Orientation="Vertical" Margin="0" Padding="0">
+                                      
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                                            <Label Text="{Binding Naziv}"
+                                                   TextColor="LightGray"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="StartAndExpand"
+                                                   FontSize="13"/>
+                                            <Label Text="{Binding Opis}"
+                               HorizontalOptions="Center" FontSize="13" VerticalOptions="StartAndExpand" TextColor="LightGray"/>
+                                        </StackLayout>
+
+                                        <Image Source="{Binding SlikaThumb, Converter={StaticResource imgConv}}" HeightRequest="150" WidthRequest="50" HorizontalOptions="FillAndExpand" Aspect="AspectFill">
+                                          
+                                        </Image>
+
+                                    </StackLayout>
+                                    
+                                </Frame>
+
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
                 </StackLayout>
 
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand">
-                <Label Text="{Binding Rating}" TextColor="Black"  FontSize="13"></Label>
-                <Image Source="rating.png" x:Name="prvaZvijezda" IsVisible="True"></Image>
-                <Label Text="Osvrti" TextColor="#028090" TextDecorations="Underline">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Vidi_Tapped"></TapGestureRecognizer>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
-            <StackLayout x:Name="orderPanel"  Orientation="Horizontal" Margin="0,10,0,0">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
-                <Image Source="minus.png"  >
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SmanjiKolicinuCommand}">
 
-                            </TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Entry Text="{Binding Kolicina}" Keyboard="Numeric" ></Entry>
-                    <Image Source="plus.png">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding PovecajKolicinuCommand}">
 
-                            </TapGestureRecognizer>
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-           
-                <Button BackgroundColor="#028090"
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <StackLayout x:Name="orderPanel"  Orientation="Horizontal" Margin="0,0,0,0" Padding="0" >
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand">
+                            <Image Source="minus.png"  >
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SmanjiKolicinuCommand}">
+
+                                    </TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Entry Text="{Binding Kolicina}" Keyboard="Numeric" ></Entry>
+                            <Image Source="plus.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PovecajKolicinuCommand}">
+
+                                    </TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+
+                        <Button BackgroundColor="#028090"
                     Text="Dodaj u korpu"
                     TextColor="White"
                     HorizontalOptions="CenterAndExpand"
                     CornerRadius="10"
                     Command="{Binding NaruciCommand}"></Button>
-                <Button BackgroundColor="Gray"
+                        <Button BackgroundColor="Gray"
                     Text="Zatvori"
                     TextColor="White"
                     HorizontalOptions="EndAndExpand"
                    
                     Clicked="zatvori_Clicked" CornerRadius="10"></Button>
 
-            
-        </StackLayout>
-          
-            <!--<StackLayout x:Name="warningPanel"  Orientation="Horizontal"  Margin="25,5,25,5" IsVisible="True">
-                <Label Text = "Niste prijavljeni!"
-                                            d:Text="{Binding .}"
-                                            LineBreakMode="WordWrap" 
-                                            Style="{DynamicResource ListItemTextStyle}" 
-                                            FontSize="13"
-                                            TextColor="IndianRed"
-                                            />
-            </StackLayout>-->
+
+                    </StackLayout>
+
+                </StackLayout>
+                             
+           
        
     </StackLayout>
+        </ScrollView>
     </Frame>
+
 
 </pages:PopupPage>

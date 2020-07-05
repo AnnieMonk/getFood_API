@@ -51,35 +51,7 @@ namespace getFood_API.Services.Restoran
 
             return _mapper.Map<List<MRestoran>>(result);
         }
-        //public override MRestoran GetById(int id)
-        //{
-        //    var restoran = _context.Restoran.Find(id);
-
-        //    var result = _context.Review.Where(i => i.RestoranId == restoran.RestoranId).ToList();
-        //    if (result.Count != 0)
-        //    {
-        //        decimal sabraneOcjene = 0;
-        //        int brojReviews = 0;
-        //        foreach (var x in result)
-        //        {
-        //            sabraneOcjene += x.Ocjena;
-        //            brojReviews++;
-
-        //        }
-
-        //        var ukupnaOcjena = sabraneOcjene / brojReviews;
-        //        restoran.Rating = ukupnaOcjena;
-        //    }
-        //    else
-        //    {
-        //        restoran.Rating = 0;
-        //    }
-
-           
-        //    _context.SaveChanges();
-
-        //    return _mapper.Map<MRestoran>(restoran);
-        //}
+       
 
     }
 }

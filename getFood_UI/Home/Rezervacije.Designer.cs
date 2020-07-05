@@ -168,7 +168,7 @@
             this.txtPretrazi.Name = "txtPretrazi";
             this.txtPretrazi.Size = new System.Drawing.Size(157, 31);
             this.txtPretrazi.TabIndex = 7;
-            this.txtPretrazi.Text = "Unesite pojam";
+            this.txtPretrazi.Text = "Unesite ime";
             this.txtPretrazi.TextChanged += new System.EventHandler(this.txtPretrazi_TextChanged);
             // 
             // btnDodajRezervaciju

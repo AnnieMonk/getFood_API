@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using getFood_API.Database;
-using getFood_API.Util;
+using getFood_API.Services.Recommender;
 using getFood_Model;
 using getFood_Model.Requests;
 using Microsoft.AspNetCore.Http;
@@ -17,21 +17,20 @@ namespace getFood_API.Controllers
     public class RecommenderController : ControllerBase
     {
         private getFoodContext _context = new getFoodContext();
+        private readonly RecommenderService _recommenderService;
         private readonly IMapper _mapper;
 
         public RecommenderController(getFoodContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
+            _recommenderService = new RecommenderService(_context, _mapper);
         }
 
         [HttpGet]
-        public List<MProdukti> Get ([FromQuery] RecommenderSearchRequest search)
+        public List<MProdukti> GetSlicniProdukti ([FromQuery] RecommenderSearchRequest search)
         {
-            Recommender r = new Recommender();
-            var produkti = r.GetPreporuceni(search.KorisnikId);
-
-            return _mapper.Map<List<MProdukti>>(produkti);
+            return _recommenderService.GetSlicniProdukti(search);
         }
     }
 }

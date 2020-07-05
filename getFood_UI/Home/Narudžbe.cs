@@ -27,25 +27,12 @@ namespace getFood_UI.Home
        
         private async void Narudžbe_Load(object sender, EventArgs e)
         {
-            await LoadNarudzbe();
+            await LoadNarudzbe(null);
         }
 
-        List<int> listachekiranih;
-        public async Task LoadNarudzbe()
+        private async Task Chekiraj(List<MNarudzba> list)
         {
-            txtDatumDanas.Text = DateTime.Now.ToShortDateString();
-            narudzbeGrid.DataSource = null;
-            var narudzbe = await _serviceNarudzba.Get<List<MNarudzba>>(new NarudzbaSearchRequest { RestoranID = restoranId, Datum= DateTime.Now});
            
-            var bindinglist = new BindingList<MNarudzba>(narudzbe);
-            var source = new BindingSource(bindinglist, null);
-            narudzbeGrid.AutoGenerateColumns = false;
-            narudzbeGrid.DataSource = source;
-            narudzbeGrid.Update();
-            narudzbeGrid.Refresh();
-
-            narudzbeGrid.ClearSelection();
-
             var resultStatus = await _serviceStatus.Get<BindingList<MStatus>>(null);
 
 
@@ -57,9 +44,9 @@ namespace getFood_UI.Home
                     statusId = status.StatusId;
                 }
             }
-
+            List<int> listachekiranih;
             listachekiranih = new List<int>();
-            foreach (var rez in narudzbe)
+            foreach (var rez in list)
             {
 
                 foreach (DataGridViewRow y in narudzbeGrid.Rows)
@@ -81,7 +68,30 @@ namespace getFood_UI.Home
 
             }
 
+        }
 
+
+        public async Task LoadNarudzbe(string prezime)
+        {
+            txtDatumDanas.Text = DateTime.Now.ToShortDateString();
+            narudzbeGrid.DataSource = null;
+            List<MNarudzba> narudzbe;
+            if(prezime == null)
+               narudzbe = await _serviceNarudzba.Get<List<MNarudzba>>(new NarudzbaSearchRequest { RestoranID = restoranId, Datum= DateTime.Now});
+            else
+                narudzbe = await _serviceNarudzba.Get<List<MNarudzba>>(new NarudzbaSearchRequest { RestoranID = restoranId, Prezime = prezime, Datum = DateTime.Now });
+           
+            var bindinglist = new BindingList<MNarudzba>(narudzbe);
+            var source = new BindingSource(bindinglist, null);
+            narudzbeGrid.AutoGenerateColumns = false;
+            narudzbeGrid.DataSource = source;
+            narudzbeGrid.Update();
+            narudzbeGrid.Refresh();
+
+            narudzbeGrid.ClearSelection();
+
+
+            await Chekiraj(narudzbe);
         }
 
         private void narudzbeGrid_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -94,19 +104,19 @@ namespace getFood_UI.Home
 
         private async void txtPretrazi_TextChanged(object sender, EventArgs e)
         {
-            List<MNarudzba> result;
+           
             if (string.IsNullOrWhiteSpace(txtPretrazi.Text))
             {
-                //prikazi sve kada obrišem
-                result = await _serviceNarudzba.Get<List<MNarudzba>>(new NarudzbaSearchRequest { RestoranID = restoranId, Datum = DateTime.Now });
+               
+                await LoadNarudzbe(null);
             }
             else
             {
-                result = await _serviceNarudzba.Get<List<MNarudzba>>(new NarudzbaSearchRequest { RestoranID = restoranId, Prezime=txtPretrazi.Text, Datum = DateTime.Now });
+             
+                await LoadNarudzbe(txtPretrazi.Text);
             }
 
 
-            narudzbeGrid.DataSource = result;
         }
     }
 }

@@ -26,14 +26,16 @@ namespace getFood.Mobile.Views
             MessagingCenter.Subscribe<App>((App)Application.Current, "OnReviewAdded", (sender) => {
                 model.Init();
             });
-            
+           
 
-       }
+
+        }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             await model.Init();
+            await model.RecommendInit();
 
         }
     
@@ -45,7 +47,8 @@ namespace getFood.Mobile.Views
             
         }
 
-        private async void Vidi_Tapped(object sender, EventArgs e)
+
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new ReviewsPage(null, model.MeniProdukt));
 

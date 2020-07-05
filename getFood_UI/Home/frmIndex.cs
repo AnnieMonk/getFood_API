@@ -1,6 +1,7 @@
 ﻿
 using getFood_Model;
 using getFood_Model.Requests;
+using getFood_UI.Login;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -42,7 +43,7 @@ namespace getFood_UI.Home
             
             SidePanel.Height = button3.Height;
             SidePanel.Top = button3.Top;
-            // restoran1.BringToFront();
+           
             
                 Restoran jel = new Restoran();
             
@@ -54,13 +55,15 @@ namespace getFood_UI.Home
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
 
             SidePanel.Height = button1.Height;
             SidePanel.Top = button1.Top;
 
             RadnaPloca rp = new RadnaPloca();
+            await rp.PopulateAsync();
+            await rp.LoadZaradaDanas();
             rp.Dock = DockStyle.Fill;
             panelDesavanja.Controls.Add(rp);
             panelDesavanja.Controls["RadnaPloca"].BringToFront();
@@ -73,8 +76,7 @@ namespace getFood_UI.Home
            
             SidePanel.Height = button2.Height;
             SidePanel.Top = button2.Top;
-            // jelovnik1.BringToFront();
-            
+         
                 Jelovnik jel = new Jelovnik();
                 
                 jel.Dock = DockStyle.Fill;
@@ -93,7 +95,7 @@ namespace getFood_UI.Home
             SidePanel.Height = button4.Height;
             SidePanel.Top = button4.Top;
             Narudžbe jel = new Narudžbe();
-            await jel.LoadNarudzbe();
+            await jel.LoadNarudzbe(null);
             jel.Dock = DockStyle.Fill;
             panelDesavanja.Controls.Add(jel);
 
@@ -106,7 +108,7 @@ namespace getFood_UI.Home
 
         public async Task provjeriNotifikacije()
         {
-            var rezervacije = await _serviceRezervacije.Get<List<MRezervacije>>(new RezervacijeSearchRequest { StatusId = 3, RestoranId = Global.prijavljeniRestoran.RestoranId });
+            var rezervacije = await _serviceRezervacije.Get<List<MRezervacije>>(new RezervacijeSearchRequest { StatusId = 3, RestoranId = Global.prijavljeniRestoran.RestoranId, samoBuduce=true });
             List<MRezervacije> result = new List<MRezervacije>();
             foreach (var x in rezervacije)
             {
@@ -115,7 +117,7 @@ namespace getFood_UI.Home
                     result.Add(x);
                 }
             }
-            var narudzbe = await _serviceNarudzbe.Get<List<MNarudzba>>(new NarudzbaSearchRequest { StatusID = 3, RestoranID = Global.prijavljeniRestoran.RestoranId });
+            var narudzbe = await _serviceNarudzbe.Get<List<MNarudzba>>(new NarudzbaSearchRequest { StatusID = 3, RestoranID = Global.prijavljeniRestoran.RestoranId, Datum=DateTime.Now });
 
             if (result.Count > 0)
             {
@@ -152,7 +154,7 @@ namespace getFood_UI.Home
         private void btnCloseApp_Click(object sender, EventArgs e)
         {
             Application.Exit();
-            //this.Close();
+           
         }
         Point lastPoint;
         private void frmIndex_MouseMove(object sender, MouseEventArgs e)
@@ -189,7 +191,7 @@ namespace getFood_UI.Home
             SidePanel.Height = button4.Height;
             SidePanel.Top = button4.Top;
             Narudžbe jel = new Narudžbe();
-            await jel.LoadNarudzbe();
+            await jel.LoadNarudzbe(null);
             jel.Dock = DockStyle.Fill;
             panelDesavanja.Controls.Add(jel);
 
@@ -219,6 +221,19 @@ namespace getFood_UI.Home
             panelDesavanja.Controls.Add(jel);
 
             panelDesavanja.Controls["Rezervacije"].BringToFront();
+        }
+
+        private void txtLogovaniKorisnik_Click(object sender, EventArgs e)
+        {
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            //treba se se odloguje
+            DialogResult result = MessageBox.Show("Bit ćete odjavljeni!", "Upozorenje", buttons);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                frmLogin frm = new frmLogin();
+                frm.Show();
+            }
         }
     }
 }

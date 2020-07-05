@@ -21,6 +21,7 @@ using getFood_API.Services.Narudzba;
 using getFood_API.Services.NarudzbaStavke;
 using getFood_API.Services.Produkti;
 using getFood_API.Services.ProduktiSastojci;
+using getFood_API.Services.Recommender;
 using getFood_API.Services.Restoran;
 using getFood_API.Services.Rezervacije;
 using getFood_API.Services.Sastojci;

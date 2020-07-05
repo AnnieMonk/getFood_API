@@ -9,7 +9,6 @@
              Title="Vaše rezervacije">
     
     <StackLayout>
-        <StackLayout Orientation="Vertical" Margin="50,1,50,1">
         <StackLayout x:Name="noRezervacije" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" IsVisible="False">
             <Label Text="Trenutno nemate rezervacija!"
                        TextColor="White"
@@ -18,37 +17,42 @@
             <Image Source="praznaKorpa.png"></Image>
 
         </StackLayout>
+        <StackLayout Orientation="Vertical" Margin="50,1,50,1">
+            
+       
+            <StackLayout x:Name="ovoSeNeVidi">
+                <StackLayout Orientation="Horizontal" Margin="0,25,0,0">
 
-        <StackLayout Orientation="Horizontal" Margin="0,25,0,0">
+                    <Label Text="Filtriraj " Style="{DynamicResource ListItemTextStyle}" TextColor="White" FontAttributes="Bold"></Label>
 
-            <Label Text="Filtriraj " Style="{DynamicResource ListItemTextStyle}" TextColor="White" FontAttributes="Bold"></Label>
+                    <Image x:Name="imageFilter" Source="filter.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
 
-            <Image x:Name="imageFilter" Source="filter.png">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                    </TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>
-
-
-        </StackLayout>
-            <Frame x:Name="Filter" BackgroundColor="White" IsVisible="False">
-                <StackLayout Orientation="Vertical">
-                    <Picker x:Name="restoranList" Title="Odaberite restoran" TitleColor="White" ItemsSource="{Binding RestoranList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedRestoran}"></Picker>
-                    <Picker x:Name="statusList" Title="Status rezervacije" TitleColor="White" ItemsSource="{Binding StatusList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedStatus}"></Picker>
-                    
 
                 </StackLayout>
+                <Frame x:Name="Filter" BackgroundColor="White" IsVisible="False">
+                    <StackLayout Orientation="Vertical">
+                        <Picker x:Name="restoranList" Title="Odaberite restoran" TitleColor="Black" ItemsSource="{Binding RestoranList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedRestoran}"></Picker>
+                        <Picker x:Name="statusList" Title="Status rezervacije" TitleColor="Black" ItemsSource="{Binding StatusList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedStatus}"></Picker>
 
 
-        </Frame>
-        <StackLayout Margin="0,2,0,2">
-            <BoxView 
+                    </StackLayout>
+
+
+                </Frame>
+                <StackLayout Margin="0,2,0,2">
+                    <BoxView 
                         HeightRequest="1"
                         BackgroundColor="White" 
                         HorizontalOptions="FillAndExpand"/>
-        </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        
     </StackLayout>
     <ListView ItemsSource="{Binding RezervacijeList}"
                 VerticalOptions="FillAndExpand"
