@@ -130,7 +130,7 @@ namespace getFood_API
             services.AddScoped<ICRUDService<MKuhinja,object, object, object>, KuhinjaServis>();
             
 
-            var connection = @"Server=.;Database=getFood;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=.;Database=140071;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<getFoodContext>(options => options.UseSqlServer(connection));
           
         }

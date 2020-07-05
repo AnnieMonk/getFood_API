@@ -1,15 +1,11 @@
-﻿using Android.Widget;
-using getFood.Mobile.ViewModels;
+﻿using getFood.Mobile.ViewModels;
 using getFood_Model;
 using getFood_Model.Requests;
-using Java.Lang;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

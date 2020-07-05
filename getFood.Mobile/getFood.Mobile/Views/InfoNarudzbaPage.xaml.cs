@@ -1,13 +1,13 @@
-﻿using Android.Media;
+﻿
 using getFood.Mobile.ViewModels;
 using getFood_Model;
 using getFood_Model.Requests;
-using Java.Sql;
+
 using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 

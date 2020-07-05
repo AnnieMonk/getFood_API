@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using getFood.Mobile.Models;
-using System.Linq;
 
 
 namespace getFood.Mobile.Views

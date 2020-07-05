@@ -1,10 +1,7 @@
 ﻿using getFood.Mobile.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace getFood.Mobile.Views
 {
