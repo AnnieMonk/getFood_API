@@ -82,7 +82,7 @@ Dva samo **kupca**(inače svi mogu biti kupci)
 
 *Username:* Uposlenik.Lokomotiva1
 
-*Password:* lokomotiva**
+*Password:* lokomotiva
 
 **Medium- Admin:**
 
